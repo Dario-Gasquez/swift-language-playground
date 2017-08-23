@@ -70,7 +70,7 @@ print("heading: \(east) raw: \(east.rawValue)")
 
 //: ### Initializing from Raw Value
 let planetFromRawValue = Planet(rawValue: 5)
-print("planetFromRawValue: \(planetFromRawValue)")
+print("planetFromRawValue: \(String(describing: planetFromRawValue))")
 
 
 //: ## Recursive Enumerations
