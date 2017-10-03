@@ -13,10 +13,7 @@
         <page name='10 - Properties'/>
         <page name='11- Methods'/>
         <page name='12 - Subscripts'/>
-<<<<<<< HEAD
-=======
         <page name='13 - Inheritance'/>
->>>>>>> fecffc9f4e5cdf19f58915a98b881a016d4132b9
         <page name='UiKit'/>
         <page name='UserDefaults'/>
         <page name='Math'/>
