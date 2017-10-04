@@ -14,9 +14,9 @@ class Vehicle {
     }
 }
 
-let aCar = Vehicle()
-aCar.currentSpeed = 120.0
-print ("Vehicle: \(aCar.description)")
+let aGenericVehicle = Vehicle()
+aGenericVehicle.currentSpeed = 120.0
+print ("Vehicle: \(aGenericVehicle.description)")
 
 //: ## Subclassing
 class Bicycle: Vehicle {
@@ -33,7 +33,7 @@ print("I'm driving my bike: \(aBike.description)")
 aBike.makeNoise()
 
 //: ## Overriding
-//: - note: A subclass can override: instance methods, type/class methods, instance property, type property or subscrit. Make the intention to override explicit using the *override* keyword.
+//: - note: A subclass can override: instance methods, type/class methods, instance property, type property or subscript. Make the intention to override explicit using the *override* keyword.
 
 //: ### Accessing Superclass Methods, Properties and Subscripts
 /*:
