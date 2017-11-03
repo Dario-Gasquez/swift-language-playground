@@ -54,7 +54,7 @@ var catString = String(chatCharacters)
 
 //: ## Concatenating Strings and Characters
 catString.append("A")
-catString.characters.count
+catString.count
 
 let string1 = "string1"
 let string2 = " string2"
@@ -68,20 +68,20 @@ let multiplier = 3
 let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"
 
 //: ## Unicode
-//: ### Unicode Scalarsß
+//: ### Unicode Scalars
 /*:
  - note: A Unicode scalar is any Unicode code point in the range U+0000 to U+D7FF inclusive or U+E000 to U+10FFFF inclusive. Unicode scalars do not include the Unicode surrogate pair code points, which are the code points in the range U+D800 to U+DFFF inclusive. */
 
-//: ### Special Characters in String Literalsß
-//String literals can contain speciall characters. Examples:
+//: ### Special Characters in String Literals
+//String literals can contain special characters. Examples:
 let einsteinWords = "\"Imagination is more important than knowledge\" = Einstein"
 let dollarSignUnicode = "\u{24}"
 let blackHeartUnicode = "\u{2665}"
 let babyChickenUnicode = "\u{1F425}"
 
-//: ### Extended Grapheme Clustersß
+//: ### Extended Grapheme Clusters
 /*:
- - note: Every Character instance represents a single extended grapheme cluster, a sequence of 1 or more Unicode scalars that combined produce a single human-readable character. */
+ - note: Every Character instance represents a single extended grapheme cluster: a sequence of 1 or more Unicode scalars that combined produce a single human-readable character. */
 // example, 2 ways to represent é
 let eAcute: Character = "\u{E9}"
 let combinedEAcute: Character = "\u{65}\u{301}" // e character plus accent
@@ -100,7 +100,7 @@ print("# of characters in \(word) is \(word.count)")
 
 /*:
  - note:
- Extended grapheme clusters can be composed of multiple Unicode scalars. This means that different characters —and different representations of the same character— can require different amounts of memory to store. Because of this, characters in Swift do not each take up the same amount of memory within a string’s representation. As a result, the number of characters in a string cannot be calculated without iterating through the string to determine its extended grapheme cluster boundaries. If you are working with particularly long string values, be aware that the count property must iterate over the Unicode scalars in the entire string in order to determine the characters for that string. The count of the characters returned by the count property is not always the same as the length property of an NSString that contains the same characters. The length of an NSString is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode extended grapheme clusters within the string.
+ Extended grapheme clusters can be composed of multiple Unicode scalars. This means that different characters — and different representations of the same character — can require different amounts of memory to store. Because of this, characters in Swift do not each take up the same amount of memory within a string’s representation. As a result, the number of characters in a string cannot be calculated without iterating through the string to determine its extended grapheme cluster boundaries. If you are working with particularly long string values, be aware that the count property must iterate over the Unicode scalars in the entire string in order to determine the characters for that string. The count of the characters returned by the count property is not always the same as the length property of an NSString that contains the same characters. The length of an NSString is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode extended grapheme clusters within the string.
  */
 
 //: ## Accessing and Modifying a String

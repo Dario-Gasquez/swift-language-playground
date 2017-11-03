@@ -3,18 +3,23 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/dario/Documents/iOS/Swift%204.0%20Playground.playground/Pages/03%20-%20Strings%20&amp;%20Characters.xcplaygroundpage#CharacterRangeLen=34&amp;CharacterRangeLoc=7400&amp;EndingColumnNumber=32&amp;EndingLineNumber=204&amp;StartingColumnNumber=34&amp;StartingLineNumber=203&amp;Timestamp=525036867.178243"
+         documentLocation = "file:///Users/dario/Documents/iOS/swift-language-playground/The%20Swift%204.0%20Programming%20Language.playground/Pages/03%20-%20Strings%20&amp;%20Characters.xcplaygroundpage#CharacterRangeLen=34&amp;CharacterRangeLoc=7387&amp;EndingColumnNumber=32&amp;EndingLineNumber=204&amp;StartingColumnNumber=34&amp;StartingLineNumber=203&amp;Timestamp=531433827.221139"
          lockedSize = "{175, 213}"
          selectedRepresentationIndex = "1"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/dario/Documents/iOS/Swift%204.0%20Playground.playground/Pages/03%20-%20Strings%20&amp;%20Characters.xcplaygroundpage#CharacterRangeLen=0&amp;CharacterRangeLoc=8412&amp;EndingColumnNumber=48&amp;EndingLineNumber=238&amp;StartingColumnNumber=48&amp;StartingLineNumber=238&amp;Timestamp=525036867.178467"
+         documentLocation = "file:///Users/dario/Documents/iOS/swift-language-playground/The%20Swift%204.0%20Programming%20Language.playground/Pages/03%20-%20Strings%20&amp;%20Characters.xcplaygroundpage#CharacterRangeLen=0&amp;CharacterRangeLoc=8399&amp;EndingColumnNumber=48&amp;EndingLineNumber=238&amp;StartingColumnNumber=48&amp;StartingLineNumber=238&amp;Timestamp=531433827.221436"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/dario/Documents/iOS/Swift%204.0%20Playground.playground/Pages/03%20-%20Strings%20&amp;%20Characters.xcplaygroundpage#CharacterRangeLen=0&amp;CharacterRangeLoc=8412&amp;EndingColumnNumber=48&amp;EndingLineNumber=238&amp;StartingColumnNumber=48&amp;StartingLineNumber=238&amp;Timestamp=525036867.178631"
+         documentLocation = "file:///Users/dario/Documents/iOS/swift-language-playground/The%20Swift%204.0%20Programming%20Language.playground/Pages/03%20-%20Strings%20&amp;%20Characters.xcplaygroundpage#CharacterRangeLen=0&amp;CharacterRangeLoc=8399&amp;EndingColumnNumber=48&amp;EndingLineNumber=238&amp;StartingColumnNumber=48&amp;StartingLineNumber=238&amp;Timestamp=531433827.221632"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/dario/Documents/iOS/swift-language-playground/The%20Swift%204.0%20Programming%20Language.playground/Pages/03%20-%20Strings%20&amp;%20Characters.xcplaygroundpage#CharacterRangeLen=13&amp;CharacterRangeLoc=2001&amp;EndingColumnNumber=18&amp;EndingLineNumber=76&amp;StartingColumnNumber=5&amp;StartingLineNumber=76&amp;Timestamp=531433827.221825"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
