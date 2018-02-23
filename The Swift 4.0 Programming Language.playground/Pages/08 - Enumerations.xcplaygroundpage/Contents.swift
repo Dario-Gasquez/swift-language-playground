@@ -65,6 +65,7 @@ let thirdRock = Planet.earth
 print("planet \(thirdRock) raw value is: \(thirdRock.rawValue)")
 
 let east = CompassPointString.east
+let eastRaw = east.rawValue
 print("heading: \(east) raw: \(east.rawValue)")
 
 

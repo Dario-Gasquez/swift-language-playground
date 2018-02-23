@@ -112,7 +112,7 @@ func aFuncWithEscapingClosure(completionHandler: @escaping ()->Void) {
 }
 
 func aFuncWithoutEscapingClosure(closure: ()->Void) {
-    closure()
+    print(closure())
 }
 
 class SomeClass {
