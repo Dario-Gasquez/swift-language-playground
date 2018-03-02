@@ -2,7 +2,7 @@
 //: # Error Handling
 //: ## Representing and Throwing Errors
 //: In Swift errors are values that conform to the `Error` empty protocol. Swift enumerations are a a good way to represent errors.
-import Foundation
+
 
 enum VendingMachineError: Error {
     case invalidSelection
