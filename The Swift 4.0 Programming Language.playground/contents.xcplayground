@@ -20,6 +20,7 @@
         <page name='17 - Error Handling'/>
         <page name='18 - Type Casting'/>
         <page name='19 - Nested Types'/>
+        <page name='20 - Extensions'/>
         <page name='23 - Automatic Reference Counting'/>
         <page name='UiKit'/>
         <page name='UserDefaults'/>
