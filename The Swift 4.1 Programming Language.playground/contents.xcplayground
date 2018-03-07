@@ -22,6 +22,7 @@
         <page name='19 - Nested Types'/>
         <page name='20 - Extensions'/>
         <page name='21 - Protocols'/>
+        <page name='22 - Generics'/>
         <page name='23 - Automatic Reference Counting'/>
         <page name='UiKit'/>
         <page name='UserDefaults'/>

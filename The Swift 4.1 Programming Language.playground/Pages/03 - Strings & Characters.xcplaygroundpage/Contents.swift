@@ -36,12 +36,6 @@ print(someString)
 
 
 //: ## Working with characters
-// old Swift 3 for-in loop
-for char in "sample string".characters {
-    print(char, separator: "-", terminator: " | ")
-}
-print("\n")
-
 // Swift 4 simplifed syntax (Strings are collections now, no need to resort to .characters attrib)
 for character in "sample string" {
     print(character, separator: "", terminator: " ")
@@ -88,10 +82,6 @@ let combinedEAcute: Character = "\u{65}\u{301}" // e character plus accent
 
 //: ## Character counting
 var word = "cafe"
-//Swift 3
-print("characters in \(word) is \(word.characters.count)")
-
-//Swift 4
 print("characters in \(word) is \(word.count)")
 
 //Note: not always modifying a String changes its count

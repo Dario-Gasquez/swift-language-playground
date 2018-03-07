@@ -73,7 +73,7 @@ print("status code: '\(http200Ok.statusCode)'. Description: '\(http200Ok.descrip
 //: ### Optionals
 let perhapsANumber = "123"
 let optionalNumber = Int(perhapsANumber)
-print(optionalNumber)
+print(optionalNumber as Any)
 
 // Forced unwrapping: !
 if optionalNumber != nil {
