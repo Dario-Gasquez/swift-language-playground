@@ -25,6 +25,7 @@
         <page name='22 - Generics'/>
         <page name='23 - Automatic Reference Counting'/>
         <page name='24 - Memory Safety'/>
+        <page name='25 - Access Control'/>
         <page name='UiKit'/>
         <page name='UserDefaults'/>
         <page name='Math'/>

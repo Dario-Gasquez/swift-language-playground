@@ -439,7 +439,7 @@ if let oneNotName = CarAccesory(name: "", quantity: 1) {
  Note that if you override a failable superclass initializer with a nonfailable subclass initializer, the only way to delegate up to the superclass initializer is to force-unwrap the result of the failable superclass initializer.
  */
 
-//: -Note: You can override a failable initializer with a nonfailable initializer but not the other way around.
+//: - Note: You can override a failable initializer with a nonfailable initializer but not the other way around.
 
 class Document {
     var name: String?
