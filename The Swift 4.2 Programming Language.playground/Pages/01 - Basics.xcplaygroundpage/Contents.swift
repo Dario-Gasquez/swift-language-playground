@@ -48,13 +48,14 @@ let twoThousands:UInt16 = 2_000
 let one: UInt8 = 1
 let twoKandOne = twoThousands + UInt16(one)
 
+let tooSmall:UInt8 = UInt8(twoKandOne) //runtime error:  Not enough bits to represent the passed value
 
-//: ### Type Aliases
+//: ## Type Aliases
 typealias AudioSample = UInt16
 let audioSample = AudioSample.max
 
 
-//: ### Tuples
+//: ## Tuples
 let httpError = (404, "HTTP error: Not Found")
 let (errorCode, errorDescription) = httpError
 print("error code: '\(errorCode)'. Error description: '\(errorDescription)'")
@@ -70,17 +71,22 @@ print("The error description is: '\(httpError.1)'")
 let http200Ok = (statusCode: 200, description: "OK")
 print("status code: '\(http200Ok.statusCode)'. Description: '\(http200Ok.description)'")
 
-//: ### Optionals
+//: ## Optionals
 let perhapsANumber = "123"
 let optionalNumber = Int(perhapsANumber)
 print(optionalNumber as Any)
 
+/*:
+ - note: Swift's `nil` isn't the same as `nil` in Objective-C where `nil` is a pointer to a nonexistent object. In Swift `nil` is the absence of value. Optionals of **any** type can be set to `nil`, not just object types.
+ */
+
+//: ### If Statements and Forced Unwrapping
 // Forced unwrapping: !
 if optionalNumber != nil {
     print(optionalNumber!)
 }
 
-// Optional binding
+//: ### Optional Binding
 if let number = optionalNumber {
     print(number)
 }
@@ -99,12 +105,9 @@ if let firstNumber = Int("4"),
 }
 // Prints "4 < 42 < 100"
 
-if let firstNumber = Int("4")
-{
-    if let secondNumber = Int("42")
-    {
-        if firstNumber < secondNumber && secondNumber < 100
-        {
+if let firstNumber = Int("4") {
+    if let secondNumber = Int("42") {
+        if firstNumber < secondNumber && secondNumber < 100 {
             print("\(firstNumber) < \(secondNumber) < 100")
         }
     }
@@ -112,7 +115,7 @@ if let firstNumber = Int("4")
 // Prints "4 < 42 < 100"
 
 
-// Implicitly unwrapped optionals -----
+//: ### Implicitly unwrapped optionals
 let optString: String? = "an optional string"
 let forcedString: String = optString!
 
@@ -136,14 +139,38 @@ if otpInt == 2 {
 } else {
     print("NOT 2")
 }
-//: ### Assertion and Preconditions
+
+
+//: ## Error Handling
+func canThrowAnError() throws {
+    
+}
+
+
+do {
+    try canThrowAnError()
+} catch  {
+    //an error was thrown
+}
+
+//: ## Assertion and Preconditions
 /*:
  - note: precondition are evaluated both in debug & production builds. Unlike asserts  which are only evaluated in debug.
  */
 
+
+//: ### Debugging with Assertion
 let age = -3
 //assert(age > 0, "age can not be negative")
+
+
+//: ### Enforcing Preconditions
 precondition(age >= 0, "age must be greater than 0")
 
+/*:
+ - note:
+ If you compile in unchecked mode `-0unchecked`, preconditions aren't checked. The compiler assumes the preconditions are always true and optimizes the code accordingly. However, the `fatalError(_:file:line:)` function always halts excecution, regardless of optimization settings.
+ You can use `fatalError(_:file:line:)` function during prototyping and early development to create stubs for functioanlity that hasn't been implemented yet, by writing `fatalError("Unimplemented")` as the stub implementation. You can be sure execution will halt if it encounters a stub implementation.
+ */
 
 //: [Next](@next)
