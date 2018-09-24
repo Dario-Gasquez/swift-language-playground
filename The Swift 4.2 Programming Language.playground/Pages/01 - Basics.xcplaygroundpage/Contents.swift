@@ -1,7 +1,5 @@
 //: # The Basics
 
-import Foundation
-
 var boolean: Bool?
 var intVar: Int? = 1
 
@@ -172,5 +170,4 @@ precondition(age >= 0, "age must be greater than 0")
  If you compile in unchecked mode `-0unchecked`, preconditions aren't checked. The compiler assumes the preconditions are always true and optimizes the code accordingly. However, the `fatalError(_:file:line:)` function always halts excecution, regardless of optimization settings.
  You can use `fatalError(_:file:line:)` function during prototyping and early development to create stubs for functioanlity that hasn't been implemented yet, by writing `fatalError("Unimplemented")` as the stub implementation. You can be sure execution will halt if it encounters a stub implementation.
  */
-
 //: [Next](@next)

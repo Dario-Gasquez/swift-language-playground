@@ -1,11 +1,18 @@
-//: [Previous](@previous)
+//:  [Previous](@previous) - [Next](@next)
 
-import Foundation
+//: # String and Characters
 
-// NOTE: String is fully bridged NSString
+//: - note: String is fully bridged NSString
 var str = "some"
 
-//: ## Multiline string literal
+
+// Importing Foundation gives us additional methods defined in `NSString`.
+import Foundation
+let length = str.lengthOfBytes(using: .ascii)
+
+//: ## String Literals
+
+//: ### Multiline string literals
 let multilineString = """
 The white rabbit put on his spectacles. "Where Shall I Begin,
 please your Majesty?" he asked.
@@ -13,6 +20,13 @@ please your Majesty?" he asked.
 "Begin at the beginning", etcetera.
 """
 print("multiline: '\(multilineString)'")
+
+//: ### Special Characters in String Literals
+// String literals can contain special characters. Examples:
+let wiseWords = "\"Imagination is more important than knowledge\" - Einstein"
+let dollarSign = "\u{24}"
+let blackHeart = "\u{2665}"
+let sparklingHeart = "\u{1F496}"
 
 //: ## Initializing an empty string
 //these two are equivalent
@@ -36,7 +50,7 @@ print(someString)
 
 
 //: ## Working with characters
-// Swift 4 simplifed syntax (Strings are collections now, no need to resort to .characters attrib)
+// Swift 4 simplifed the syntax to access individual characters (Strings are collections now, no need to resort to .characters attrib)
 for character in "sample string" {
     print(character, separator: "", terminator: " ")
 }
@@ -47,7 +61,7 @@ let chatCharacters: [Character] = ["C", "a", "t", "!", "🐱"]
 var catString = String(chatCharacters)
 
 //: ## Concatenating Strings and Characters
-catString.append("A")
+catString.append(exclamationMark)
 catString.count
 
 let string1 = "string1"
@@ -66,12 +80,6 @@ let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"
 /*:
  - note: A Unicode scalar is any Unicode code point in the range U+0000 to U+D7FF inclusive or U+E000 to U+10FFFF inclusive. Unicode scalars do not include the Unicode surrogate pair code points, which are the code points in the range U+D800 to U+DFFF inclusive. */
 
-//: ### Special Characters in String Literals
-//String literals can contain special characters. Examples:
-let einsteinWords = "\"Imagination is more important than knowledge\" = Einstein"
-let dollarSignUnicode = "\u{24}"
-let blackHeartUnicode = "\u{2665}"
-let babyChickenUnicode = "\u{1F425}"
 
 //: ### Extended Grapheme Clusters
 /*:
@@ -123,7 +131,7 @@ welcome.removeSubrange(range)
 
 //: ## Substrings
 /*:
- - note: When you get a substring from a string —for example, using a subscript or a method like prefix(_:)— the result is an instance of Substring, not another string. Substrings in Swift have most of the same methods as strings, which means you can work with substrings like strings. Unlike strings, you use substrings for only a short amount of time while performing actions on a string. When you’re ready to store the result for a longer time, you convert the substring to an instance of String. For example
+ - note: When you get a substring from a string —for example, using a subscript or a method like `prefix(_:)` — the result is an instance of Substring, not another string. Substrings in Swift have most of the same methods as strings, which means you can work with substrings like strings. Unlike strings, you use substrings for only a short amount of time while performing actions on a string. When you’re ready to store the result for a longer time, you convert the substring to an instance of String. For example
  */
 let greeting = "Hello, Earth"
 let greetingIndex = greeting.index(of: ",") ?? greeting.endIndex
@@ -133,10 +141,8 @@ let beginning = greeting[..<index]
 let beginningString = String(beginning)
 
 /*:
- -note: Both String and Substring conform to the StringProtocol protocol. If you’re writing code that manipulates string data, accepting a StringProtocol value lets you pass that string data as either a String or Substring value.
+ - note: Both String and Substring conform to the StringProtocol protocol. If you’re writing code that manipulates string data, accepting a StringProtocol value lets you pass that string data as either a String or Substring value.
  */
-
-
 
 //: ## Comparing strings
 // Swift provides 3 ways to compare textual values: string & character equality, prefix equality and suffix equality
@@ -161,6 +167,10 @@ let cyrillicA = "\u{0410} letter"
 if latinA != cyrillicA {
     print("non equivalent")
 }
+
+/*:
+ - Note: String and character comparisons in Swift are not locale-sensitive
+ */
 
 //: ### Prefix and Suffix equality
 let romeoAndJuliet = [
@@ -187,6 +197,9 @@ print("Scenes in act 1 = \(scenesInAct1)")
 
 //hasSuffix can be used in a similar what to check for string suffix equality
 
+/*:
+ - Note: The `hasPrefix(_:)` and `hasSuffix(_:)` methods perform a character-by-character canonical equivalence comparison between the extended grapheme clusters in each string, as described in String and Characters Equality.
+ */
 
 //: ## Unicode Representation of Strings
 let catDogString = "🐱at🐶og!"
@@ -199,34 +212,9 @@ for codeUnit in catDogString.utf16 {
     print(codeUnit, terminator: " ")
 }
 
-//: ## working with filename and extensions
-import Foundation
-
-var destFileName = ProcessInfo.processInfo.globallyUniqueString
-let metadataPath = "/effects/bear.png"
-let url = URL(fileURLWithPath: metadataPath)
-let pathExtension = (metadataPath as NSString).pathExtension
-let extensionFromURL = url.pathExtension
-
-
-
-extension CharacterSet {
-    func allCharacters() -> [Character] {
-        var result: [Character] = []
-        for plane: UInt8 in 0...16 where self.hasMember(inPlane: plane) {
-            for unicode in UInt32(plane) << 16 ..< UInt32(plane + 1) << 16 {
-                if let uniChar = UnicodeScalar(unicode), self.contains(uniChar) {
-                    result.append(Character(uniChar))
-                }
-            }
-        }
-        return result
-    }
+print("\nUnicodeScalar: ")
+for codeUnit in catDogString.unicodeScalars {
+    print(codeUnit.value, terminator: " ")
 }
 
-let decomposable = CharacterSet.decomposables
-
-print("\ndecomplosable :\(decomposable.contains("ž"))")
-
-
-//: [Next](@next)
+//:  [Previous](@previous) - [Next](@next)

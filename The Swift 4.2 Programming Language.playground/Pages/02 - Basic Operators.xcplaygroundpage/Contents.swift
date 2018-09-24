@@ -1,4 +1,8 @@
-//: [Previous](@previous)
+//:  [Previous](@previous) - [Next](@next)
+
+//: # Basic Operators
+
+//: ## Assignment Operator
 
 // Tuple assignment example
 let a = (first: 1, second: 2)
@@ -16,13 +20,14 @@ var (x,y) = (a.first, a.second)
 //}
 
 
-//: ## Reminder operator
+//: ## Arithmetic Operators
+//: ### Reminder operator
 9 % 5
 
-//In Swift 3.0 reminder is deprecated for float values
+//In Swift 3.0+ reminder is deprecated for float values
 //Deprecated: 8 % 2.5
 
-//: ## Comparison operator
+//: ## Comparison Operators
 // Also availabe for tuples
 (2, "appld") < (2, "apple")
 (3, "apple") < (3, "bird")
@@ -41,7 +46,7 @@ let defaultColorName = "red"
 var userDefinedColorName: String?
 var colorNameToUse = userDefinedColorName ?? defaultColorName
 
-//: ## Range operators
+//: ## Range Operators
 //: ### Closed Range Operator
 for index in 1...5 {
     print("index = \(index)")
@@ -74,6 +79,5 @@ range.contains(5)
 range.contains(-10000)
 
 //: ## Logical operators: not (!a), and (a && b), or (a || b)
- 
 
-//: [Next](@next)
+//:  [Previous](@previous) - [Next](@next)
