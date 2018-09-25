@@ -52,6 +52,5 @@ var theMatrix = Matrix2D(rows: 2, columns: 2)
 
 theMatrix[0, 1] = 1.5
 theMatrix[1, 0] = 3.2
-
-theMatrix[2,2] = 2.0
+theMatrix[2, 2] = 2.0
 //: [Next](@next)

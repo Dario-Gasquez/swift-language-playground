@@ -1,20 +1,19 @@
 //: [Previous](@previous)
 
 //: # Functions
-//: ## Function parameters and return values
+//: ## Function Parameters and Return Values
 
-// The return value of a function can be ignored:
 func printAndCount(string: String) -> Int {
     print(string)
-    return string.characters.count
+    return string.count
 }
 
+// The return value of a function can be ignored:
 func printWithoutCounting(string: String) {
     let _ = printAndCount(string: string)
 }
 
 printAndCount(string: "hello")
-
 printWithoutCounting(string: "bye")
 
 //: ### Functions with multiple return values (tuples)
@@ -31,6 +30,7 @@ func minMax(array: [Int]) -> (min: Int, max: Int) {
 
 let bounds = minMax(array: [8, -5, 10, 3, 105])
 print("min is: \(bounds.min) and max is: \(bounds.max)")
+
 
 //: ## Function Argument Labels and Parameter Names
 /*: 
@@ -103,7 +103,7 @@ func addInts(_ a: Int, _ b: Int) -> Int { return a+b }
 func multiplyInts(_ a: Int, _ b: Int) -> Int { return a*b }
 
 
-//: ## Using function types
+//: ## Using Function Types
 // function types can be used as other types in Swift. For example to assing functions to variables or constants:
 var mathFunc = addInts
 mathFunc(4,5)
@@ -111,7 +111,7 @@ mathFunc = multiplyInts
 mathFunc(4,5)
 
 
-//: ### Function types as parameter types
+//: ### Function Types as Parameter Types
 func printMathResult(_ aFunc: (Int, Int)->Int, a: Int, b: Int) {
     print(#function + " - the result is: \(aFunc(a, b))")
 }
@@ -120,7 +120,7 @@ printMathResult(addInts, a: 3, b: 2)
 printMathResult(multiplyInts, a: 3, b: 2)
 
 
-//: ### Function Types as return types
+//: ### Function Types as Return Types
 func stepForward(_ input: Int)->Int {
     return input + 1
 }
@@ -140,7 +140,7 @@ while currentValue != 0 {
     currentValue = moveToZero(currentValue)
 }
 
-//: ### Nested Functions
+//: ## Nested Functions
 func chooseStepFunction2(backward: Bool) -> (Int)->Int {
     func stepUp(_ input: Int)->Int { return input+1 }
     func stepDown(_ input: Int)->Int { return input-1 }

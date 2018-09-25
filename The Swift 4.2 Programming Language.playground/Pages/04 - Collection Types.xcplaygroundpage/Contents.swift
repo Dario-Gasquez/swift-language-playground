@@ -1,6 +1,15 @@
 //: [Previous](@previous)
 
+//: # Collection Types
+//: ## Mutability of Collections
+/*:
+  A collection assigned to a variable is *mutable*, on the other hand asigning it to a constant will render it *inmutable*
+ */
+
 //: ## Arrays
+/*:
+ Swift's `Array` is bridged to Foundation's `NSArray` class
+ */
 //These 2 arrays are equivalent
 let anIntArray: Array<Int> = [1, 2, 3, 4]
 let anotherIntArray: [Int] = [1, 2, 3, 4]
@@ -49,13 +58,13 @@ for person in personArray {
 //: ### Creating an empty array
 var someInts = [Int]()
 
-//: ### Creating an array with default values
+//: ### Creating an array with a Default Value
 let fivesDoubleArray = Array(repeating: 5.0, count: 3)
 let anotherFivesDoubleArray = [Double](repeating: 5.0, count: 3)
 let fivesIntArray = Array(repeating: 5, count: 3)
 let anotherFivesIntArray = [Int](repeating: 5, count: 3)
 
-//: ### Adding two arrays
+//: ### Creatign an Array by Adding two arrays
 var addedArray = fivesDoubleArray + anotherFivesDoubleArray
 
 //: ### Accesing and modifying an Array
@@ -69,14 +78,12 @@ if !addedArray.isEmpty {
 }
 print("addedArray is \(isEmpty)empty")
 
-
 //: ### Append items at the end
 // Append method -----
 addedArray.append(3.0)
 
 // += overload -----
 addedArray += [2.0, 1.0]
-
 
 //: ### Retrieve/replace items
 // With Subscript Syntax -----
@@ -103,8 +110,13 @@ let firstItem = addedArray.removeFirst()
 //: ### Iterating Over an Array
 print("for in")
 var theArray = ["first", "second", "third", "fourth"]
+for element in theArray {
+    print(element)
+}
 
 // Gettig (index, value) tuple from array ---
+
+print("for (index, vale)")
 for (index, value) in theArray.enumerated() {
     print("index: \(index) - value: \(value)")
 }
@@ -119,20 +131,23 @@ while let x = anArray.popLast() , x % 2 == 1 {
 //: ### Hash Values for Set Types
 /*:
  - Important:
- A type must be hashable in order to be stored in a set. That is, it must provide a way to compute a hash value for itself.
- Make your types conform to the Hashable protocol to insert them in a set. The value returned by hashValue property is not required to be the same accross different executions of the same program, or in different programs. */
+ A type must be *hashable* in order to be stored in a set. That is, it must provide a way to compute a hash value for itself.
+ Make your types conform to the `Hashable` protocol to insert them in a set. The value returned by `hashValue` property is not required to be the same accross different executions of the same program, or in different programs. */
 
 //: ### Creating and Initializing an Emtpy Set
 var letters = Set<Character>()
 
 //: ### Creating a Set with an Array Literal
-let favoriteGenres: Set<String> = ["Rock", "Classical", "80s Pop"]
+// Comment: Because this is set, although "Rock" appears twice in the initialization array, it will be contained only once in the set.
+let favoriteGenres: Set<String> = ["Rock", "Classical", "80s Pop", "Rock"]
 
 // Type infered -----
 var musicGenres: Set = ["Country", "Folk"]
+musicGenres.insert("Country")
+musicGenres
 
 //: ### Accessing and modifying a Set
-//:  - note: Same as Array, use count to get number of elements and isEmpty for what it name implies :)
+//:  - note: Same as Array, use count to get number of elements and `isEmpty` for what it name implies :)
 // Add item with insert -----
 let inserted = musicGenres.insert("New Age")
 print(inserted)
@@ -154,7 +169,7 @@ let sortedArrayFromSet = favoriteGenres.sorted()
 print(sortedArrayFromSet)
 
 
-//: ### Set operations
+//: ## Performing Set Operations
 let oddDigits: Set = [1, 3, 5, 7]
 let evenDigits: Set = [2, 4, 6, 8]
 let primeNumbers: Set = [2, 3, 5, 7]
@@ -167,7 +182,7 @@ let symetricDifference = oddDigits.symmetricDifference(evenDigits)
 //: ### Set membership and Equality
 let houseAnimals: Set = ["cat", "dog"]
 let farmAnimals: Set = ["cow", "chicken", "cat", "dog"]
-let cityAnimals: Set = ["mouse", "pigeon", "cat"]
+let cityAnimals: Set = ["mouse", "pigeon"]
 
 houseAnimals.isSubset(of: farmAnimals)
 farmAnimals.isSuperset(of: cityAnimals)
@@ -175,9 +190,9 @@ cityAnimals.isDisjoint(with: houseAnimals)
 
 
 //: ## Dictionaries
-//: - Important: A dictionary Key type must conform to the Hashable protocol, like a set’s value type.
+//: - Important: A dictionary Key type must conform to the `Hashable` protocol, like a set’s value type.
 
-//: ### Creating a dictionary
+//: ### Creating an Empty Dictionary
 var anIntStringDictionary: Dictionary<Int, String> = Dictionary()
 anIntStringDictionary[0] = "zero"
 anIntStringDictionary[1] = "one"
@@ -188,6 +203,7 @@ anotherIntStringDictionary[0] = "zero"
 anotherIntStringDictionary[1] = "one"
 print(anotherIntStringDictionary)
 
+//: ### Creating a Dictionary with a Dictionary Literal
 var airports = ["YYZ":"Toronto Pearson", "DUB":"Dublin"]
 
 /*:
@@ -209,7 +225,7 @@ if oldValue == nil {
 
 //: ### Removing a value for a key
 airports["LHR"] = nil // using subscript syntax
-airports.removeValue(forKey: "COR") // unsing removeValue method
+airports.removeValue(forKey: "COR") // using removeValue method
 
 //: ### Iterating Over a Dictionary
 for (airportCode, airportName) in airports {
@@ -217,16 +233,15 @@ for (airportCode, airportName) in airports {
 }
 
 // Retrieve iteratable collection of keys -----
-//FIXME: The next line causes an EXC_BAD_ACCESS error in Swift 4. Why cant we retrieve .keys into a let or var?
-//let keyCollection = airports.keys
-for key in airports.keys {
+let keyCollection = airports.keys
+print("keyCollection: \(keyCollection)")
+for key in keyCollection {
     print(key, separator:"", terminator:", ")
 }
 
 print("\nairport names:")
 // Retrieve iteratable collection of values -----
-//FIXME: The next line causes an EXC_BAD_ACCESS error in Swift 4. Why cant we retrieve .keys into a let or var?
-//let valueCollection = airports.values
+let valueCollection = airports.values
 for value in airports.values {
     print(value, separator:"", terminator:", ")
 }

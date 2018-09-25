@@ -1,4 +1,6 @@
 //: [Previous](@previous)
+
+//: # Control Flow
 //: ## For-In Loops
 for index in 1...5 {
     print("\(index) times 5 is \(index*5)")
@@ -45,6 +47,10 @@ let numberOfLegs = ["spider":8, "ant":6, "cat":4]
 for (name, legs) in numberOfLegs {
     print("the \(name) has \(legs) legs", terminator: ", ")
 }
+//: ## While Loops
+//: ### While
+//: ### Repeat-While
+
 
 //: ## Conditional statements
 //: ### If
@@ -65,7 +71,7 @@ default:
 // Interval Matching -----
 let approximateCount = 62
 let countedThings = "moons orbiting Saturn"
-var naturalCount: String
+var naturalCount: String = ""
 switch approximateCount {
 case 0:
     naturalCount = "no"
@@ -147,7 +153,7 @@ default:
 //Break & Continue -------
 let puzzleInput = "great minds think alike"
 var puzzleOutput = ""
-for character in puzzleInput.characters {
+for character in puzzleInput {
     switch character {
     case "a", "e", "i", "o", "u", " ":
         continue // execution jumps to begining of next for iteration. if 'break' used, execution continues at the end of the switch statement
@@ -157,6 +163,29 @@ for character in puzzleInput.characters {
     print("end of switch") //printed 23 times with 'break' but only 13 times with 'continue'
 }
 print(puzzleOutput)
+
+// Labeled Statements -----
+let finalSquare = 25
+var board = [Int](repeating: 0, count: finalSquare + 1)
+board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+var square = 0
+var diceRoll = 0
+
+gameLoop: while square != finalSquare {
+    diceRoll += 1
+    if diceRoll == 7 { diceRoll = 1 }
+    switch square + diceRoll {
+    case finalSquare:
+        break gameLoop
+    case let newSquare where newSquare > finalSquare:
+        continue gameLoop
+    default:
+        square += diceRoll
+        square += board[square]
+    }
+}
+print("Game over!")
 
 //: ### Early Exit: Guard statement
 func greet(person: [String: String]) {
