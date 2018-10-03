@@ -1,4 +1,5 @@
 //: [Previous](@previous)
+
 //: # Properties
 /*:
  - note: Stored Properties are provided by: classes and structures. Computed Properties are provided by: classes, structures and enumerations
@@ -45,7 +46,7 @@ manager.data.append("Some more data")
 print("manager importer filename: \(manager.importer.filename)")
 
 /*:
- - note: If a lazy property is accessed by multiple threads simultaneously and the property has not yet been initialized, there is no guarantee that the property will be initialized only once.
+ - Important: If a lazy property is accessed by multiple threads simultaneously and the property has not yet been initialized, there is no guarantee that the property will be initialized only once.
  */
 
 //: ## Computed Properties
@@ -111,10 +112,9 @@ class StepCounter {
 let stepCounter = StepCounter()
 stepCounter.totalSteps = 200
 stepCounter.totalSteps = 360
-
 //: ## Global and Local Variables
 /*:
- - note: Global constants and variables are always computed lazily, ina similar manner to Lazy Stored Properties. Unlike lazy stored properties, global constants and variables do not need to be mareked with the 'lazy' keyword. Local constants and variables are never computed lazily.
+ - note: Global constants and variables are always computed lazily, in a similar manner to Lazy Stored Properties. Unlike lazy stored properties, global constants and variables do not need to be mareked with the 'lazy' keyword. Local constants and variables are never computed lazily.
  */
 
 
@@ -150,5 +150,7 @@ class SomeClass {
         return 25
     }
 }
+
+//: - Note: The computed type properties defined above are read-only, but they could by read-write like the computed instance properties by adding setters.
 
 //: [Next](@next)

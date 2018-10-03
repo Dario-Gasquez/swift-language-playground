@@ -1,4 +1,5 @@
 //: [Previous](@previous)
+
 //: # Methods
 /*:
  - note: The fact that structures and enumerations can define methods in Swift is a major difference from C and Objective-C. In Objective-C, classes are the only types that can define methods. In Swift, you can choose whether to define a class, structure, or enumeration, and still have the flexibility to define methods on the type you create.
@@ -66,7 +67,7 @@ struct PointB {
     }
 }
 
-//Mutating methods for enumarations con set **self** to a different case
+//Mutating methods for enumarations can set **self** to a different case
 enum TriStateSwitch {
     case off, low, high
     mutating func next() {
@@ -100,4 +101,57 @@ class SomeClass {
 
 SomeClass.someTypeMethod()
 
+
+//Structure example with type methods:
+struct LevelTracker {
+    static var highestUnlockedLevel = 1
+    var currentLevel = 1
+    
+    static func unlock(_ level: Int) {
+        if level > highestUnlockedLevel {
+            highestUnlockedLevel = level
+        }
+    }
+    
+    static func isUnlocked(_ level: Int) -> Bool {
+        return level <= highestUnlockedLevel
+    }
+    
+    @discardableResult
+    mutating func advance(to level: Int) -> Bool {
+        if LevelTracker.isUnlocked(level) {
+            currentLevel = level
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+
+// LevelTracker client class: Player
+class Player {
+    var tracker = LevelTracker()
+    let playerName: String
+    
+    init(name: String) {
+        playerName = name
+    }
+    
+    func complete(level: Int) {
+        LevelTracker.unlock(level + 1)
+        tracker.advance(to: level + 1)
+    }
+}
+
+var player = Player(name: "Argyrios")
+player.complete(level: 1)
+print("highest unlocked level is now \(LevelTracker.highestUnlockedLevel)")
+
+player = Player(name: "Beto")
+if player.tracker.advance(to: 6) {
+    print("player is now on level 6")
+} else {
+    print("level 6 has not yet been unlocked")
+}
 //: [Next](@next)

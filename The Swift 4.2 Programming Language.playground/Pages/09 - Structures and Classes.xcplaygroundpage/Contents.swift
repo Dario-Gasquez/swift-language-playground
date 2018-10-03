@@ -1,14 +1,39 @@
 //: [Previous](@previous)
-//: # Classes and Structures
-//: ## Comparing Classes and Structures
+//: # Structures and Classes
+//: ## Comparing Structures and Classes
 //: ### Definition Syntax
 class SomeClass {
     // class definition
+    var name: String
+    init(named: String) {
+        self.name = named
+    }
 }
 
 struct SomeStructure {
     // structure definition
+    let someClass: SomeClass
 }
+
+let aSomeClass = SomeClass(named: "aSomeClass")
+
+let aStruct = SomeStructure(someClass: aSomeClass)
+let anotherStruct = SomeStructure(someClass: aSomeClass)
+let yetAnotherStruct = aStruct
+
+aSomeClass.name = "new name"
+print(aStruct.someClass === anotherStruct.someClass)
+print(aStruct.someClass === yetAnotherStruct.someClass)
+print(aStruct.someClass.name)
+print(anotherStruct.someClass.name)
+print(yetAnotherStruct.someClass.name)
+
+aStruct.someClass.name = "none & some"
+print(aStruct.someClass.name)
+print(anotherStruct.someClass.name)
+print(yetAnotherStruct.someClass.name)
+
+
 
 //Examples:
 struct Resolution {
@@ -16,17 +41,20 @@ struct Resolution {
     var height = 0
 }
 
-class VideoModde {
-    var resoulution = Resolution()
+class VideoMode {
+    var resolution = Resolution()
     var interlaced = false
     var frameRate = 0.0
     var name: String?
 }
 
-//: ### Class and Structure Instances
+//: ### Structure and Class Instances
 let someResolution = Resolution()
-let someVideoMode = VideoModde()
+let someVideoMode = VideoMode()
 
+//: ### Accessing Properties
+someVideoMode.resolution.width = 320
+print("video mode resolution with: \(someVideoMode.resolution.width)")
 
 //: ### Memberwise Initializers for Structure Types
 let vga = Resolution(width: 320, height: 200)
@@ -44,7 +72,7 @@ print("hd is: \(hd)")
 let interlacedVideoMode = someVideoMode
 print("someVideo mode interlaced before: \(someVideoMode.interlaced)")
 interlacedVideoMode.interlaced = true
-print("someVideo mode interleaced after: \(someVideoMode.interlaced)")
+print("someVideo mode interlaced after: \(someVideoMode.interlaced)")
 
 //: ### Identity operator
 // used to check if 2 constants/variables refer to the same instance
@@ -68,7 +96,7 @@ if interlacedVideoMode === someVideoMode {
  -  The structure’s primary purpose is to encapsulate a few relatively simple data values.
  - It is reasonable to expect that the encapsulated values will be copied rather than referenced when you assign or pass around an instance of that structure.
  - Any properties stored by the structure are themselves value types, which would also be expected to be copied rather than referenced.
- -The structure does not need to inherit properties or behavior from another existing type.
+ - The structure does not need to inherit properties or behavior from another existing type.
 */
 
 

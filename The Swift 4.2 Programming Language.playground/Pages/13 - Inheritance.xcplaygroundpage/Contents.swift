@@ -6,7 +6,7 @@
 class Vehicle {
     var currentSpeed = 0.0
     var description: String {
-        return "this vehicle is going at: \(currentSpeed) Km/h"
+        return "this vehicle is going at: \(currentSpeed) Km/h."
     }
     
     func makeNoise() {
