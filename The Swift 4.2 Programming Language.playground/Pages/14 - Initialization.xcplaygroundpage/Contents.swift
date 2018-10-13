@@ -3,6 +3,7 @@
 
 //: ## Setting Initial Values for Stored Properties
 //: Classes and structures instances need to set all their stored properties to an appropriate initial value. Stored properties can not be in an indetermined state.
+//: - Note: when you assign a default value to a stored property, or set its initial value in an initializer, the value of that property is set without calling any property observers.
 
 //: ### Initializers
 // basic initializer example:
@@ -241,9 +242,14 @@ Designated initializers for classes are written in the same way as simple initia
 */
 
 class Vehicle {
-    var numberOfWheels = 0
+    var numberOfWheels: Int
     var description: String {
         return "\(numberOfWheels) wheel(s)"
+    }
+    
+    init() {
+        numberOfWheels = 0
+        print(self.description)
     }
 }
 
@@ -251,7 +257,7 @@ class Vehicle {
  The Vehicle class provides a default value for its only stored property, and does not provide any custom initializers itself. As a result, it automatically receives a default initializer, as described in Default Initializers. The default initializer (when available) is always a designated initializer for a class, and can be used to create a new Vehicle instance with a numberOfWheels of 0:
  */
 let vehicle = Vehicle()
-print("Vehicle: \(vehicle.description)")
+//print("Vehicle: \(vehicle.description)")
 
 class Bicycle: Vehicle {
     override init() {

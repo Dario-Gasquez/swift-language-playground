@@ -36,12 +36,12 @@ struct Matrix2D {
     subscript(row: Int, column: Int) -> Double {
         get {
             assert(isIndexValid(row: row, column: column), "get: index out of range")
-            return grid[(row * column) + column]
+            return grid[(row * columns) + column]
         }
         
         set {
             assert(isIndexValid(row: row, column: column), "set: index out of range")
-            return grid[(row*column + column)] = newValue
+            grid[(row * columns) + column] = newValue
         }
         
     }
@@ -52,5 +52,6 @@ var theMatrix = Matrix2D(rows: 2, columns: 2)
 
 theMatrix[0, 1] = 1.5
 theMatrix[1, 0] = 3.2
-theMatrix[2, 2] = 2.0
+print(theMatrix)
+//theMatrix[2, 2] = 2.0
 //: [Next](@next)

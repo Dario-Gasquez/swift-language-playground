@@ -59,7 +59,7 @@ shiftBits << 2              // 00010000
 shiftBits << 5              // 10000000
 shiftBits << 6              // 00000000
 shiftBits >> 2              // 00000010
-
+print(String(shiftBits, radix: 2))
 //: #### Shifting Behavior for Signed Integers
 /*:
  The shifting behavior is more complex for signed integers than for unsigned integers, because of the way signed integers are represented in binary. In this case shifting adds 0s or 1s as needed to mantain the sign.

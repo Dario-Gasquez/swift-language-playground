@@ -15,8 +15,9 @@ let anIntArray: Array<Int> = [1, 2, 3, 4]
 let anotherIntArray: [Int] = [1, 2, 3, 4]
 anotherIntArray.count
 
-let filtered = anotherIntArray.filter { $0 % 2 == 0 }
-print(filtered)
+
+let eveNumbers = anotherIntArray.filter { $0 % 2 == 0 }
+print(eveNumbers)
 
 func getArray() -> [Int] {
     return anIntArray
@@ -122,10 +123,11 @@ for (index, value) in theArray.enumerated() {
 }
 
 print("while")
-var anArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+var anArray = [1, 2, 3, 4, 5, 6, 7, 5, 9]
 while let x = anArray.popLast() , x % 2 == 1 {
     print(x)
 }
+anArray
 
 //: ## Sets
 //: ### Hash Values for Set Types
@@ -177,7 +179,7 @@ let primeNumbers: Set = [2, 3, 5, 7]
 let unionSet = oddDigits.union(evenDigits)
 let intersection = oddDigits.intersection(primeNumbers)
 let substraction = oddDigits.subtracting(primeNumbers)
-let symetricDifference = oddDigits.symmetricDifference(evenDigits)
+let symetricDifference = oddDigits.symmetricDifference(evenDigits).sorted()
 
 //: ### Set membership and Equality
 let houseAnimals: Set = ["cat", "dog"]
@@ -226,6 +228,12 @@ if oldValue == nil {
 //: ### Removing a value for a key
 airports["LHR"] = nil // using subscript syntax
 airports.removeValue(forKey: "COR") // using removeValue method
+let enumeratedFromDict = airports.enumerated()
+print(enumeratedFromDict)
+
+for enumerated in enumeratedFromDict {
+    print(enumerated)
+}
 
 //: ### Iterating Over a Dictionary
 for (airportCode, airportName) in airports {
@@ -233,15 +241,12 @@ for (airportCode, airportName) in airports {
 }
 
 // Retrieve iteratable collection of keys -----
-let keyCollection = airports.keys
-print("keyCollection: \(keyCollection)")
-for key in keyCollection {
+for key in airports.keys {
     print(key, separator:"", terminator:", ")
 }
 
 print("\nairport names:")
 // Retrieve iteratable collection of values -----
-let valueCollection = airports.values
 for value in airports.values {
     print(value, separator:"", terminator:", ")
 }

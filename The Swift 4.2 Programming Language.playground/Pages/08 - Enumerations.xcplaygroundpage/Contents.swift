@@ -30,9 +30,11 @@ var qrProductBarcode = Barcode.qrCode("qwer1234")
 // extracting associated values (as constants or variables) with let or var
 
 switch upcProductBarcode {
-case .upc(let numberSystem, let manufacturer, let product, let check):
+case .upc(let numberSystem, let manufacturer, let product, var check):
+    check += numberSystem
     print("UPC: \(numberSystem) -- \(manufacturer + 1) -- \(product) -- \(check)")
-case .qrCode(let code):
+case .qrCode(var code):
+    code += " QR"
     print("QR code: \(code)")
 }
 
