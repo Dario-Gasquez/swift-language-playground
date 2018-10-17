@@ -1,6 +1,7 @@
 //: [Previous](@previous)
 //: # Protocols
 //: A protocol defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality.
+
 //: ## Protocol Syntax
 import Foundation
 protocol SomeProtocol {
@@ -127,7 +128,7 @@ class SomeClass: SomeProtocol {
     }
 }
 //: The use of `required` ensures an explicit or inherited implementation is provided on all subclasses of the confirming class, such that they conform to the protocol.
-//: - Note: You don’t need to mark protocol initializer implementations with the required modifier on classes that are marked with the final modifier, because final classes can’t be subclassed.
+//: - Note: You don’t need to mark protocol initializer implementations with the `required` modifier on classes that are marked with the `final` modifier, because `final` classes can’t be subclassed.
 
 //: If a subclass overrides a designated initializer for a superclass, and also implements a matching initializer requirement from a protocol, mark the initializer implementation with both the `required` and `override` modifiers:
 protocol SmallProtocol {
@@ -171,28 +172,29 @@ class SomeSubClass: SomeSuperClass, SmallProtocol {
 //: ## Adding Protocol Conformance with an Extension
 //: You can extend an existing type to adopt and conform to a new protocol, even if you don’t have access to the source code for the existing type. Extensions can add new properties, methods, and subscripts to an existing type, and are therefore able to add any requirements that a protocol may demand.
 
-//: ### Conditionally Conforming to a Protocol
-//:You can make a generic type conditionally conform to a protocol by listing constraints when extending the type. Write these constraints after the name of the protocol you’re adopting using a generic `where` clause.
-
 protocol TextRepresentable {
     var textualDescription: String { get }
 }
 
-//WARNING: will only compile with Swift 4.1 compiler (Xcode 9.3 or +)
-//extension Array: TextRepresentable where Element: TextRepresentable {
-//    var textualDescription: String {
-//        let itemsAsText = self.map { $0.textualDescription }
-//        return "[" + itemsAsText.joined(separator: ", ") + "]"
-//    }
-//}
 
-//Swift 4.0 version
-extension Array where Element: TextRepresentable {
+//: ### Conditionally Conforming to a Protocol
+//:You can make a generic type conditionally conform to a protocol by listing constraints when extending the type. Write these constraints after the name of the protocol you’re adopting using a generic `where` clause.
+
+// WARNING: will only compile with Swift 4.1 compiler (Xcode 9.3 or +)
+extension Array: TextRepresentable where Element: TextRepresentable {
     var textualDescription: String {
-        let textItems = self.map { $0.textualDescription }
-        return "[ \(textItems.joined(separator: ", ")) ]"
+        let itemsAsText = self.map { $0.textualDescription }
+        return "[" + itemsAsText.joined(separator: ", ") + "]"
     }
 }
+
+//Swift 4.0 version
+//extension Array where Element: TextRepresentable {
+//    var textualDescription: String {
+//        let textItems = self.map { $0.textualDescription }
+//        return "[ \(textItems.joined(separator: ", ")) ]"
+//    }
+//}
 
 //: ### Declaring Protocol Adoption with an Extension
 //: If a type already conforms to all of the requirements of a protocol, but has not yet stated that it adopts that protocol, you can make it adopt the protocol with an empty extension:
@@ -209,6 +211,8 @@ extension Hamster: TextRepresentable {}
 let simmonTheHamster = Hamster(name: "Simon")
 let aTextRepresentable: TextRepresentable = simmonTheHamster
 print(aTextRepresentable.textualDescription)
+
+//: - Note: Types don't automatically adopt a protocol just by satisfying its requirements. They must always explicitly declare their adoption of the protocol.
 
 //: ## Collections of Protocol Types
 //: A protocol can be used as a collection type:
@@ -254,6 +258,9 @@ Protocol adoption can be limited to class only by adding `AnyObject` to the inhe
         //definition
     }
  */
+
+//: - Note: Use a class-only protocol when the behavior defiend by that protocol's requirement assumes or requires that a conforming type has reference semantics rather than value semantics.
+
 
 //: ## Protocol Composition
 //: You can combine multiple protocols into a single requirement with a *protocol composition* using the `&` to combine the desired protocols. Protocol compositions behave as if you defined a temporary local protocol that has the combined requirements of all protocols in the composition. Protocol compositions don’t define any new protocol types.
@@ -305,6 +312,47 @@ concert(in: somewhere)
 
 //: ## Checking for Protocol Conformance
 //: use of `is` and `as` can be applied to protocols as well.
+
+protocol HasArea {
+    var area: Double { get }
+}
+
+class Circle: HasArea {
+    let pi = Double.pi
+    var radius: Double
+    var area: Double { return pi * radius * radius }
+    init(radius: Double) { self.radius = radius }
+    
+}
+
+class Country: HasArea {
+    var name: String
+    var area: Double
+    init(name: String, area: Double) { self.name = name; self.area = area }
+}
+
+class Animal {
+    var legs: Int
+    init(legs: Int) { self.legs = legs }
+}
+
+let objects: [AnyObject] = [
+    Circle(radius: 2.0),
+    Country(name: "Zaraza Country", area: 243_610),
+    Animal(legs: 3)
+]
+
+for object in objects {
+    if let objectWithArea = object as? HasArea {
+        print("Area is \(objectWithArea.area)")
+        if objectWithArea is Country {
+            print("Also a country: \((objectWithArea as! Country).name)")
+        }
+    } else {
+        print("Something that does not have an area")
+    }
+}
+
 
 //: ## Optional Protocol Requirements
 //: Its possible to define *optional requirements* for protocols by prefixing them with `optional`. Both the protocol and the optional requirements must be marked with `@objc`.

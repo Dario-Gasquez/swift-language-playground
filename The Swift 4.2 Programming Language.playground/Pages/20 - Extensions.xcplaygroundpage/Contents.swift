@@ -11,7 +11,7 @@
     }
 */
 /*:
- An extension can make an existing type addopt one or more protocols.
+ An extension can make an existing type adopt one or more protocols.
  
     extension SomeType: SomeProtocol, AnotherProtocol {
         //protocols requirements implementation

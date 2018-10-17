@@ -38,7 +38,7 @@
  */
 
 //: ### Default Access Levels
-//: All entities (with a fuew exceptions described below) have a default access level of **internal** if you don't explicitly specify one.
+//: All entities (with a few exceptions described below) have a default access level of **internal** if you don't explicitly specify one.
 
 //: ### Access Levels for Single-Target Apps
 //: When you write a simple single-target app, the code in your app is typically self-contained within the app and doesn’t need to be made available outside of the app’s module. The default access level of internal already matches this requirement. Therefore, you don’t need to specify a custom access level. You may, however, want to mark some parts of your code as file private or private in order to hide their implementation details from other code within the app’s module.
@@ -84,7 +84,6 @@ private class AnotherPrivateClass {    // explicitly private class
 
 //: ### Tuple Types
 //: The access level for a tuple type is the most retrictive access level of all types used in that tuple.
-
 //: - Note: Tuple types don’t have a standalone definition in the way that classes, structures, enumerations, and functions do. A tuple type’s access level is deduced automatically when the tuple type is used, and can’t be specified explicitly.
 
 //: ### Function Types
@@ -161,6 +160,12 @@ struct TrackedString {
         }
     }
 }
+
+var stringToEdit = TrackedString()
+stringToEdit.value = "This string will be tracked"
+stringToEdit.value += "this edit will increment numberOfEdits."
+stringToEdit.value += "so will this one"
+print("The number of edits is \(stringToEdit.numberOfEdits)")
 
 //: ## Initializers
 /*:
