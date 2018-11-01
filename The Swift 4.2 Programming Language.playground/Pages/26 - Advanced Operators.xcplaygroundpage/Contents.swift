@@ -10,7 +10,7 @@ import Foundation
 */
 
 //: ## Bitwise Operators
-//: *Bitwise Operators* enable you to manipulate the individual raw data bits within a data structure. Swift supports all the bitwise operators foudn in C, as described below.
+//: *Bitwise Operators* enable you to manipulate the individual raw data bits within a data structure. Swift supports all the bitwise operators found in C, as described below.
 
 //: ### Bitwise NOT Operator
 //: The *bitwise NOT operator* (`~`) inverts all bits in a number:
@@ -42,7 +42,7 @@ print(String(xored, radix:2))
 //: ### Bitwise Left and Right Shift Operators
 //: The *bitwise left shift operator* (`<<`) and *bitwise right shift operator* (`>>`) move all bits in a number to the left or the right by a certain number of places, according to the rules defined below.
 
-//: #### Shifting Behavior for Unsigned Integers
+//: ## Shifting Behavior for Unsigned Integers
 /*:
  The bit-shifting behavior for unsigned integers is as follows:
 - Existing bits are moved to the left or right by the requested number of places.
@@ -59,8 +59,8 @@ shiftBits << 2              // 00010000
 shiftBits << 5              // 10000000
 shiftBits << 6              // 00000000
 shiftBits >> 2              // 00000010
-print(String(shiftBits, radix: 2))
-//: #### Shifting Behavior for Signed Integers
+print("binary representation: \(String(shiftBits, radix: 2))")
+//: ## Shifting Behavior for Signed Integers
 /*:
  The shifting behavior is more complex for signed integers than for unsigned integers, because of the way signed integers are represented in binary. In this case shifting adds 0s or 1s as needed to mantain the sign.
  */
