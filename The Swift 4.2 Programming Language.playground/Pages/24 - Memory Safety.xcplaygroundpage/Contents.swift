@@ -88,7 +88,7 @@ extension Player {
 var oscar = Player(name: "oscar", health: 10, energy: 10)
 var maria = Player(name: "maria", health: 5, energy: 10)
 oscar.shareHealth(with: &maria) // OK
-//oscar.shareHealth(with: &oscar) //Conflicting access to oscar
+// oscar.shareHealth(with: &oscar) //Conflicting access to oscar
 
 //: ## Conflicting Access to Properties
 //: Types like structures, tuples, and enumerations are made up of individual constituent values, such as the properties of a structure or the elements of a tuple. Because these are value types, mutating any piece of the value mutates the whole value, meaning read or write access to one of the properties requires read or write access to the whole value. For example, overlapping write accesses to the elements of a tuple produces a conflict:

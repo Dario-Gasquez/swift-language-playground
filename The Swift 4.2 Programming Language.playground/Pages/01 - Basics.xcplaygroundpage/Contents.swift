@@ -46,7 +46,7 @@ let twoThousands:UInt16 = 2_000
 let one: UInt8 = 1
 let twoKandOne = twoThousands + UInt16(one)
 
-let tooSmall:UInt8 = UInt8(twoKandOne) //runtime error:  Not enough bits to represent the passed value
+//let tooSmall:UInt8 = UInt8(twoKandOne) //runtime error:  Not enough bits to represent the passed value
 
 //: ## Type Aliases
 typealias AudioSample = UInt16
@@ -161,9 +161,15 @@ do {
 let age = -3
 //assert(age > 0, "age can not be negative")
 
-
+if age > 10 {
+    print("you can ride the roller-coaster")
+} else if age >= 0 {
+    print("you can ride the ferris wheel")
+} else {
+ //   assertionFailure("Negative age")
+}
 //: ### Enforcing Preconditions
-precondition(age >= 0, "age must be greater than 0")
+//precondition(age >= 0, "age must be greater than 0")
 
 /*:
  - note:

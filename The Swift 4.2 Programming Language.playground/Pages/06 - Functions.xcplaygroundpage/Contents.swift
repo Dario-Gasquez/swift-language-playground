@@ -70,16 +70,29 @@ func arithmeticMean(_ numbers: Double...) -> Double {
 
 arithmeticMean(1,2,3,5,10.5)
 
-func variadicTest(intNumber: Int, numbers: Double ...) {
+func variadicTest(intNumber: Int, numbers: Double...) {
     print("intNumber: \(intNumber)")
     
     for number in numbers {
         print(number, terminator: ", ")
     }
+    print("")
     
 }
 
 variadicTest(intNumber: 5, numbers: 5.5, 6.0, 7.8)
+
+
+func variadicTestTwo(numbers: Double..., intNumber: Int) {
+    print("intNumber: \(intNumber)")
+    
+    for number in numbers {
+        print(number, terminator: ", ")
+    }
+    print("")
+}
+variadicTestTwo(numbers: 5, 10, 3, intNumber: 2)
+
 //: - note: A function can have at most **one** variadic parameter
 
 //: ### In-Out parameters

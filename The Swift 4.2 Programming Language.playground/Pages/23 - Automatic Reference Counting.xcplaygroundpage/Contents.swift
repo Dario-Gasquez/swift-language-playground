@@ -46,7 +46,9 @@ personReference1 = nil
 personReference2 = nil
 
 //: ARC does not deallocate the Person instance until the third and final strong reference is broken, at which point it’s clear that you are no longer using the Person instance:
+print("-- before setting personReference3 to nil ----")
 personReference3 = nil
+print("-- after setting personReference3 to nil ----")
 
 
 //: ## Strong Reference Cycles Between Class Instances
@@ -80,7 +82,7 @@ class Apartment {
 
 var john: PersonWithApartment?
 var unit14A: Apartment?
-john = PersonWithApartment(name: "Johnny")
+john = PersonWithApartment(name: "Mary")
 unit14A = Apartment(unit: "4A")
 john?.apartment = unit14A
 unit14A?.tenant = john
@@ -123,13 +125,13 @@ class ApartmentWeak {
     deinit { print("Apartment \(unit) is being deinitialized") }
 }
 
-var mary: PersonWithApartmentWeak?
+var paul: PersonWithApartmentWeak?
 var unit5B: ApartmentWeak?
-mary = PersonWithApartmentWeak(name: "Mary")
+paul = PersonWithApartmentWeak(name: "Paul")
 unit5B = ApartmentWeak(unit: "5B")
-mary?.apartment = unit5B
-unit5B?.tenant = mary
-mary = nil
+paul?.apartment = unit5B
+unit5B?.tenant = paul
+paul = nil
 unit5B = nil
 
 //: - Note: In systems that use garbage collection, weak pointers are sometimes used to implement a simple caching mechanism because objects with no strong references are deallocated only when memory pressure triggers garbage collection. However, with ARC, values are deallocated as soon as their last strong reference is removed, making weak references unsuitable for such a purpose.
@@ -231,6 +233,7 @@ class HTMLElement {
 }
 
 let heading = HTMLElement(name: "h1")
+heading.asHTML()
 let defaultText = "some default text"
 heading.asHTML = {
     return "<\(heading.name)>\(heading.text ?? defaultText)</\(heading.name)>"
@@ -243,7 +246,7 @@ var paragraph: HTMLElement? = HTMLElement(name: "p", text: "hello earth")
 print(paragraph!.asHTML())
 paragraph = nil //not deallocated due to strong self reference in asHTML property.
 
-//: ## Resolving String Reference Cycles for Closures
+//: ## Resolving Strong Reference Cycles for Closures
 //: You resolve a strong reference cycle between a closure and a class instance by defining a capture list as part of the closure’s definition. A capture list defines the rules to use when capturing one or more reference types within the closure’s body. As with strong reference cycles between two class instances, you declare each captured reference to be a weak or unowned reference rather than a strong reference.
 
 //: ### Defining a Capture List
