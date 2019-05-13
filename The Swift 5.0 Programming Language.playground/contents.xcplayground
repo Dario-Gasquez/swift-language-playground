@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='raw'>
+    <pages>
+        <page name='01 - Basics'/>
+        <page name='02 - Basic Operators'/>
+        <page name='03 - Strings &amp; Characters'/>
+        <page name='04 - Collection Types'/>
+        <page name='05 - Control Flow'/>
+        <page name='06 - Functions'/>
+        <page name='07 - Closures'/>
+        <page name='08 - Enumerations'/>
+        <page name='09 - Structures and Classes'/>
+        <page name='10 - Properties'/>
+        <page name='11- Methods'/>
+        <page name='12 - Subscripts'/>
+        <page name='13 - Inheritance'/>
+        <page name='14 - Initialization'/>
+        <page name='15 -  Deinitialization'/>
+        <page name='16 - Optional Chaining'/>
+        <page name='17 - Error Handling'/>
+        <page name='18 - Type Casting'/>
+        <page name='19 - Nested Types'/>
+        <page name='20 - Extensions'/>
+        <page name='21 - Protocols'/>
+        <page name='22 - Generics'/>
+        <page name='23 - Automatic Reference Counting'/>
+        <page name='24 - Memory Safety'/>
+        <page name='25 - Access Control'/>
+        <page name='26 - Advanced Operators'/>
+        <page name='UiKit'/>
+        <page name='UserDefaults'/>
+        <page name='Math'/>
+        <page name='Misc'/>
+    </pages>
+</playground>
