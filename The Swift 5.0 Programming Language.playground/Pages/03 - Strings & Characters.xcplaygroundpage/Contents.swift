@@ -5,13 +5,11 @@
 //: - note: String is fully bridged NSString
 var str = "some"
 
-
 // Importing Foundation gives us additional methods defined in `NSString`.
 import Foundation
 let length = str.lengthOfBytes(using: .ascii)
 
 //: ## String Literals
-
 //: ### Multiline string literals
 let multilineString = """
 The white rabbit put on his spectacles. "Where Shall I Begin,
@@ -27,6 +25,10 @@ let wiseWords = "\"Imagination is more important than knowledge\" - Einstein"
 let dollarSign = "\u{24}"
 let blackHeart = "\u{2665}"
 let sparklingHeart = "\u{1F496}"
+//: ### Extended String Delimiters
+//: Use of number sign (#) to include special characters without invoking their effect.
+print(#"Line 1\nLine 2"#)
+print("Line 1\nLine 2")
 
 //: ## Initializing an empty string
 //these two are equivalent
@@ -47,8 +49,6 @@ func update(aString: inout String) {
 var someString = "sample text"
 update(aString: &someString)
 print(someString)
-
-
 //: ## Working with characters
 // Swift 4 simplifed the syntax to access individual characters (Strings are collections now, no need to resort to .characters attrib)
 for character in "sample string" {
@@ -71,15 +71,38 @@ var string12 = string1 + string2
 var string3 = "string3"
 string3 += string2
 
+//: When concatenating multiline strings every line needs a line break to avoid unwanted results
+let badStart = """
+line1
+line2
+"""
+
+let end = """
+line3
+"""
+print("\nbadStart + end\n-----------------")
+print(badStart + end)
+
+let goodStart = """
+line1
+line2
+
+"""
+print("\ngoodStart + end\n-----------------")
+print(goodStart + end)
+
 //: ## String Interpolation
 let multiplier = 3
 let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"
 
-//: ## Unicode
-//: ### Unicode Scalars
-/*:
- - note: A Unicode scalar is any Unicode code point in the range U+0000 to U+D7FF inclusive or U+E000 to U+10FFFF inclusive. Unicode scalars do not include the Unicode surrogate pair code points, which are the code points in the range U+D800 to U+DFFF inclusive. */
+//: Swift 5 addition: It is possible to use extended string delimiters to include characters that would be interepreted as a String interpolation
+print(#"Write an interpolated string in Swift using \(multiplier)."#)
 
+//: ## Unicode
+//: ### Unicode Scalar Values
+/*:
+Behind the scenes, Swift's native String type is build from *Unicode scalar values* which are unique 21-bit number for a character or modifier. NOT all 21-bit values are assigned, some are reseved for future uses or UTF-16 encoding.
+ */
 
 //: ### Extended Grapheme Clusters
 /*:
@@ -97,8 +120,7 @@ word += "\u{301}" //combinging Acute accent: U+0301
 print("# of characters in \(word) is \(word.count)")
 
 /*:
- - note:
- Extended grapheme clusters can be composed of multiple Unicode scalars. This means that different characters — and different representations of the same character — can require different amounts of memory to store. Because of this, characters in Swift do not each take up the same amount of memory within a string’s representation. As a result, the number of characters in a string cannot be calculated without iterating through the string to determine its extended grapheme cluster boundaries. If you are working with particularly long string values, be aware that the count property must iterate over the Unicode scalars in the entire string in order to determine the characters for that string. The count of the characters returned by the count property is not always the same as the length property of an NSString that contains the same characters. The length of an NSString is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode extended grapheme clusters within the string.
+ - note: Extended grapheme clusters can be composed of multiple Unicode scalars. This means that different characters — and different representations of the same character — can require different amounts of memory to store. Because of this, characters in Swift do not each take up the same amount of memory within a string’s representation. As a result, the number of characters in a string cannot be calculated without iterating through the string to determine its extended grapheme cluster boundaries. If you are working with particularly long string values, be aware that the count property must iterate over the Unicode scalars in the entire string in order to determine the characters for that string. The count of the characters returned by the count property is not always the same as the length property of an NSString that contains the same characters. The length of an NSString is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode extended grapheme clusters within the string.
  */
 
 //: ## Accessing and Modifying a String
@@ -135,7 +157,10 @@ welcome.removeSubrange(range)
  */
 let greeting = "Hello, Earth"
 let greetingIndex = greeting.index(of: ",") ?? greeting.endIndex
-let beginning = greeting[..<index]
+var beginning = greeting[..<index]
+beginning.remove(at: beginning.startIndex)
+print(beginning)
+print(greeting)
 
 //Convert 'beginning' substring to String for long-term storage.
 let beginningString = String(beginning)
@@ -145,7 +170,7 @@ let beginningString = String(beginning)
  */
 
 //: ## Comparing strings
-// Swift provides 3 ways to compare textual values: string & character equality, prefix equality and suffix equality
+//: Swift provides 3 ways to compare textual values: string & character equality, prefix equality and suffix equality
 
 //: ### String and Character Equality
 let aString = "a string"
@@ -193,10 +218,14 @@ for scene in romeoAndJuliet {
         scenesInAct1 += 1
     }
 }
-print("Scenes in act 1 = \(scenesInAct1)")
+print("Scenes in act 1: \(scenesInAct1)")
 
 //hasSuffix can be used in a similar what to check for string suffix equality
-
+var scenesInACell = 0
+for scene in romeoAndJuliet {
+    if scene.hasSuffix("cell") { scenesInACell += 1 }
+}
+print("Scenes in a cell: \(scenesInACell)")
 /*:
  - Note: The `hasPrefix(_:)` and `hasSuffix(_:)` methods perform a character-by-character canonical equivalence comparison between the extended grapheme clusters in each string, as described in String and Characters Equality.
  */
