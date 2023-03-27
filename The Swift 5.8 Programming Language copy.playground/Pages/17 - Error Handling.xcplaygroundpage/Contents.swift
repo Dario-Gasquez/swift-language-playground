@@ -131,6 +131,14 @@ do {
     print("Unexpected error: \(error)")
 }
 
+//: Another way to catch several errors is to list them after the `catch`, separated by commas. For example:
+func eat(item: String) throws {
+    do {
+        try vendingMachine.vend(itemNamed: item)
+    } catch VendingMachineError.invalidSelection, VendingMachineError.insuficientFunds, VendingMachineError.outOfStock {
+        print("Invalid selection, out of stock or not enough money.")
+    }
+}
 //: ### Converting Errors to Optional Values
 /*:
  You use try? to handle an error by converting it to an optional value. If an error is thrown while evaluating the try? expression, the value of the expression is nil. For example, in the following code x and y have the same value and behavior:
@@ -187,6 +195,6 @@ The deferred statements may not contain any code that would transfer control out
     }
  */
 
-
+//: - Note: You can use `defer` even when no error handling code is involved.
 
 //: [Next](@next)

@@ -124,10 +124,10 @@ if let firstRoomName = mary.residence?[0].name {
 
 mary.residence?[0] = Room(name: "Bathroom") //This fails because residence is nil
 
-let maryHouse = ResidenceBeta()
-maryHouse.rooms.append(Room(name: "Living Room"))
-maryHouse.rooms.append(Room(name: "Kitchen"))
-mary.residence = maryHouse
+let marysHouse = ResidenceBeta()
+marysHouse.rooms.append(Room(name: "Living Room"))
+marysHouse.rooms.append(Room(name: "Kitchen"))
+mary.residence = marysHouse
 
 if let firstRoomName = mary.residence?[0].name {
     print("The first room name is \(firstRoomName)")
